@@ -67,18 +67,11 @@
 
 
 
-                <!-- Second Blog Post -->
                 
 
 
-
-
-                <!-- Third Blog Post -->
-              
-
-
                 <!-- Pager -->
-                <ul class="pager">
+               <!--  <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
                     </li>
@@ -86,7 +79,7 @@
                         <a href="#">Newer &rarr;</a>
                     </li>
                 </ul>
-
+ -->
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
