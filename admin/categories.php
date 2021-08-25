@@ -21,8 +21,8 @@
                     <div class="col-lg-12">
                         
                         <h1 class="page-header">
-                            WELCOME
-                            <small>Nebiyou</small>
+                            Admin
+                            <small>Edit Categories</small>
                         </h1>
                     
 

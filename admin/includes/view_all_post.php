@@ -9,8 +9,29 @@
                                     <th>Images</th>
                                     <th>Tags</th>
                                     <th>Comments</th>
+                                    <th>Edit</th>
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
+
+                            <?php 
+
+                                
+                            if(isset($_GET['delete']))
+                                     {
+                                        
+
+                                        $the_post_id = $_GET['delete'];
+                                        $delete_query = "DELETE FROM post where post_id={$the_post_id}";
+
+                                        $delete = mysqli_query($connection, $delete_query);
+
+                                        header("location: posts.php");
+                                    
+                                    }
+
+
+                            ?>
 
                             <tbody>
                                 <?php 
@@ -31,19 +52,42 @@
 
 
 
-                                ?>
-                                <tr>
-                                    <td><?php echo $id; ?></td>
-                                    <td><?php echo $author; ?></td>
-                                    <td><?php echo $title; ?></td>
-                                    <td><?php echo $category; ?></td>
-                                    <td><?php echo $status; ?></td>
-                                    <td><img width="100" src="../images/<?php echo $images;?>"></td>
-                                    <td><?php echo $tags; ?></td>
-                                    <td><?php echo $comments; ?></td>
+                                
+                                echo "<tr>";
+                                echo "<td> $id </td>";
+                                echo "<td> $author </td>";
+                                echo "<td> $title </td>";
+                                
+                                $query_cat = "SELECT * FROM categories WHERE cat_id ={$category}";
 
 
-                                  <?php } ?>  
+                                     $select_categories_id = mysqli_query($connection,  $query_cat);
+                                    
+                                   
+                                     while($row= mysqli_fetch_assoc($select_categories_id))
+                                     {
+                                        $cat_id = $row['cat_id'];
+                                        
+                                        $cat_title = $row['cat_name'];
+                                                      
+                                        echo "<td> $cat_title </td>";
+
+                                     }
+
+                                   echo "<td> $status </td>";
+                                   
+                                   echo "<td><img width='100' src='../images/$images'></td>";
+                                   echo "<td> $tags </td>";
+                                   echo "<td> $comments </td>";
+                                    
+                                    echo"<td> <a href='posts.php?source=edit_post&p_id=$id;'> Edit</a></td>";
+
+
+                                    echo "<td> <a href='posts.php?delete=$id'> Delete</a></td>";
+                                     
+                                    echo "</tr>";
+                                   } 
+                                   ?>  
                                     
                                 </tr>
                             </tbody>

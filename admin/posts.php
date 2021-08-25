@@ -21,8 +21,8 @@
                     <div class="col-lg-12">
                         
                         <h1 class="page-header">
-                            WELCOME
-                            <small>Nebiyou</small>
+                            Admin
+                            <small>Posts</small>
                         </h1>
 
 
@@ -44,8 +44,8 @@
                                break;
 
 
-                           case '12':
-                            echo "helo 12";
+                           case 'edit_post':
+                            include "includes/edit_post.php";
                             break;
 
                            case '45':

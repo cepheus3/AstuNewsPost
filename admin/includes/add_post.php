@@ -5,7 +5,7 @@ if(isset($_POST['create_post']))
 
 			$post_title = $_POST['title'];
 			$post_author = $_POST['author'];
-			$post_category_id = $_POST['post_category_id'];
+			$post_category_id = $_POST['post_category'];
 			$post_status = $_POST['post_status'];
 			$post_image = $_FILES['image']['name'];
 			$post_image_temp = $_FILES['image']['tmp_name'];
@@ -17,6 +17,20 @@ if(isset($_POST['create_post']))
 			move_uploaded_file($post_image_temp, "../images/$post_image");
 
 
+			$query = "INSERT INTO post(post_category_id,post_title,post_author,post_date, post_image, post_content, post_tags,post_comment_count, post_status)"; 
+
+
+			$query .= "VALUES({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}','{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}')";
+
+			$create_post_query = mysqli_query($connection, $query);
+
+			
+			confirm($create_post_query);
+
+
+
+
+			
 }
 
 
@@ -32,9 +46,32 @@ if(isset($_POST['create_post']))
 
 
 	<div class="form-group">
-		<label for="post_category">Post Category Id</label>
-		<input type="text" class="form-control" name="post_category_id">
-		
+  	<label for="post_category">Choose Category</label>
+	<select name="post_category" id="" class="form-control">
+		<?php 
+
+			$query = "SELECT * FROM categories";
+
+			$select_categories = mysqli_query($connection, $query);
+			
+			confirm($select_categories);
+
+	        while($row = mysqli_fetch_assoc($select_categories))
+	        {
+
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_name'];
+
+
+                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+            }
+
+
+		?>
+
+
+	</select>
+	
 	</div>
 	
 

@@ -77,4 +77,13 @@ function add_category()
 
 }
 
+function confirm($result){
+    global $connection;
+
+   if (!$result) {
+            die("Query failed" . mysqli_error($connection));
+         }
+
+}
+
 ?>
